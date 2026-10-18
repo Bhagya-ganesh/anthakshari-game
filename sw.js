@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "mana-game-night-v1";
+const CACHE_NAME = "mana-game-night-v2";
 const APP_FILES = [
   "./",
   "./index.html",
