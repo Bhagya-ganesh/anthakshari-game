@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anthakshari 🎶</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:18px;font-family:Arial,sans-serif;
+ background:linear-gradient(140deg,#211044,#6b217d,#d94c78);
+ color:white;min-height:100vh
+}
+main{max-width:500px;margin:auto}
+h1{text-align:center}
+.card{
+ background:#ffffff1c;padding:18px;
+ border-radius:18px;margin:14px 0
+}
+button,input,select{
+ width:100%;padding:13px;margin:6px 0;
+ border:0;border-radius:10px;font-size:16px
+}
+button{background:#ffd166;color:#32104a;font-weight:bold}
+.row{display:flex;gap:10px}
+.row>*{flex:1;min-width:0}
+.score{font-size:28px;text-align:center;font-weight:bold}
+.letter{font-size:65px;text-align:center;font-weight:bold}
+</style>
+</head>
+<body>
+<main>
+<h1>🎤 ANTHAKSHARI 🎶</h1>
+<p style="text-align:center">Sing it • Play together • Have fun!</p>
+
+<section class="card">
+<h3>🏆 Scoreboard</h3>
+<div class="row">
+<div>
+<p>🔴 Team A</p>
+<div class="score" id="a">0</div>
+<button onclick="point('a')">+1 Point</button>
+</div>
+<div>
+<p>🔵 Team B</p>
+<div class="score" id="b">0</div>
+<button onclick="point('b')">+1 Point</button>
+</div>
+</div>
+</section>
+
+<section class="card">
+<p style="text-align:center">CURRENT TURN</p>
+<h2 id="team" style="text-align:center">Team A</h2>
+<p style="text-align:center">Sing a song starting with:</p>
+<div class="letter" id="letter">అ</div>
+<label for="language">Song language</label>
+<select id="language">
+<option>Telugu</option><option>Hindi</option>
+<option>Tamil</option><option>Kannada</option>
+<option>Malayalam</option><option>Bengali</option>
+<option>Marathi</option><option>Punjabi</option>
+<option>Gujarati</option><option>Odia</option>
+<option>Assamese</option><option>Urdu</option>
+<option>Other Indian language</option>
+</select>
+<p style="text-align:center">⏱️ Time left</p>
+<div class="score" id="timer">30</div>
+<button onclick="nextTurn()">⏭️ Next Turn</button>
+<button onclick="correct()">✅ Correct Song (+1)</button>
+<button onclick="restart()">🔄 Restart Game</button>
+</section>
+<p style="text-align:center">Made with ❤️ for music lovers</p>
+</main>
+
+<script>
+const letters=[
+'అ','ఆ','ఇ','ఈ','ఉ','ఎ','ఏ','ఐ','ఒ','ఓ',
+'క','గ','చ','జ','ట','డ','త','ద','న','ప',
+'బ','మ','య','ర','ల','వ','స','హ',
+'A','B','C','D','E','G','H','K','M','N','P','R','S'
+];
+let team='A',a=0,b=0,time=30,clock;
+
+function show(){
+ document.getElementById('a').textContent=a;
+ document.getElementById('b').textContent=b;
+ document.getElementById('team').textContent='Team '+team;
+ document.getElementById('timer').textContent=time;
+}
+function point(which){
+ if(which==='a')a++;else b++;
+ show();
+}
+function nextTurn(){
+ team=team==='A'?'B':'A';
+ document.getElementById('letter').textContent=
+ letters[Math.floor(Math.random()*letters.length)];
+ time=30;show();
+}
+function correct(){
+ if(team==='A')a++;else b++;
+ nextTurn();
+}
+function restart(){
+ if(!confirm('Restart the game and reset scores?'))return;
+ team='A';a=0;b=0;time=30;
+ document.getElementById('letter').textContent='అ';
+ show();
+}
+show();
+clock=setInterval(()=>{
+ if(time>0){time--;show();}
+ else{
+  clearInterval(clock);
+  alert('Time is up! Tap Next Turn to continue.');
+ }
+},1000);
+</script>
+</body>
+  </html>
+  
