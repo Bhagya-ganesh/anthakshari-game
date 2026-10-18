@@ -1,0 +1,12 @@
+
+{
+  "name": "Mana Game Night",
+  "short_name": "Mana Games",
+  "description": "Play Imposter, Smash and Real Anthakshari with friends.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#100d20",
+  "theme_color": "#6c3ce9"
+}
